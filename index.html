@@ -12,5 +12,40 @@
         <input type="text" id="gif-input"><br>
         <input id="add-gif" type="submit" value="Add a gif!">
     </form>    
+    <div id="button-view"></div>
+    <div id="gif-view"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var gifs = ["Scarface", "Friends", "Peaky Blinders", "Breaking Bad", "The Big Bang Theory", "James Bond", "Pirates of the Caribbean", "Pulp Fiction", "Mean Girls"];
+           
+        function displayGif() {
+            var gif = $(this).attr("data-name");
+            var queryUrl =  "https://api.giphy.com/v1/gifs/search?q=" + gif + "&apikey=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7&limit=10&rating=g"
+            
+            $.ajax({
+               url: queryUrl,
+               method: "GET",
+            }).then(function(response) {
+               console.log(response);
+            });
+        }
+
+        function renderButtons() {
+            //$("#button-view").empty();
+
+            for(var i=0; i<gifs.length; i++) {
+                var render = $("<button>");
+                render.addClass("gif");
+                render.attr("data-name", gifs[i]);
+                render.text(gifs[i]);
+                $("#button-view").append(render);
+            }
+        }
+
+        $("document").on("click", ".gif", displayGif);
+        renderButtons();
+    </script>
+
 </body>
 </html>
