@@ -39,7 +39,7 @@
         }
 
         function renderButtons() {
-            //$("#button-view").empty();
+            $("#button-view").empty();
 
             for(var i=0; i<gifs.length; i++) {
                 var render = $("<button>");
@@ -50,9 +50,13 @@
             }
         }
 
-        function gifEmpty() {
-            $("#gif-view").empty();
-        }
+        $("#add-gif").on("click", function(event){
+            event.preventDefault();
+            var movies = $("#gif-input").val().trim();
+            console.log(movies);
+            gifs.push(movies);
+            renderButtons();
+        });
 
        $(document).on("click", ".movies", displayGif);
        renderButtons();
