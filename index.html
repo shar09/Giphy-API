@@ -20,17 +20,18 @@
         var gifs = ["Scarface", "Friends", "Peaky Blinders", "Breaking Bad", "The Big Bang Theory", "James Bond", "Pirates of the Caribbean", "Pulp Fiction", "Mean Girls"];
   
         function displayGif() {
-            var gif = $(this).attr("data-name");
-            var queryUrl = "http://api.giphy.com/v1/gifs/search?q=scarface&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10&rating=g";
+            var movies = $(this).attr("data-name");
+            var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + movies + "&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10&rating=g";
             $.ajax({
                url: queryUrl,
                method: "GET",
             }).then(function(response) {
-               console.log("success got data", response.data[0].images.original.url);
+               console.log("success got data", response.data);
+               $("#gif-view").empty();
                var gifImg = $("<div></div>");
                for(var i=0; i<response.data.length; i++){
                gifImg.append(
-                   $("<img>").attr("src", response.data[i].images.original.url)
+                   $("<img>").attr("src", response.data[i].images.downsized.url)
                )
                $("#gif-view").append(gifImg);
                }
@@ -42,16 +43,20 @@
 
             for(var i=0; i<gifs.length; i++) {
                 var render = $("<button>");
-                render.addClass("gif");
+                render.addClass("movies");
                 render.attr("data-name", gifs[i]);
                 render.text(gifs[i]);
                 $("#button-view").append(render);
             }
         }
 
-       $("document").on("click", ".gif", displayGif);
+        function gifEmpty() {
+            $("#gif-view").empty();
+        }
+
+       $(document).on("click", ".movies", displayGif);
        renderButtons();
-       displayGif();
+       
     </script>
 
 </body>
