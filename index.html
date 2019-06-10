@@ -18,16 +18,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         var gifs = ["Scarface", "Friends", "Peaky Blinders", "Breaking Bad", "The Big Bang Theory", "James Bond", "Pirates of the Caribbean", "Pulp Fiction", "Mean Girls"];
-           
+  
         function displayGif() {
             var gif = $(this).attr("data-name");
-            var queryUrl =  "https://api.giphy.com/v1/gifs/search?q=" + gif + "&apikey=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7&limit=10&rating=g"
-            
+            var queryUrl = "http://api.giphy.com/v1/gifs/search?q=scarface&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10&rating=g";
             $.ajax({
                url: queryUrl,
                method: "GET",
             }).then(function(response) {
-               console.log(response);
+               console.log("success got data", response.data[0].images.original.url);
+               var gifImg = $("<div></div>");
+               for(var i=0; i<response.data.length; i++){
+               gifImg.append(
+                   $("<img>").attr("src", response.data[i].images.original.url)
+               )
+               $("#gif-view").append(gifImg);
+               }
             });
         }
 
@@ -43,8 +49,9 @@
             }
         }
 
-        $("document").on("click", ".gif", displayGif);
-        renderButtons();
+       $("document").on("click", ".gif", displayGif);
+       renderButtons();
+       displayGif();
     </script>
 
 </body>
