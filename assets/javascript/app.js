@@ -4,7 +4,7 @@ $(document).ready(function(){
     //function to display gifs based on the url
     function displayGif() {
         var movies = $(this).attr("data-name");
-        var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + movies + "&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10";
+        var queryUrl = "httpS://api.giphy.com/v1/gifs/search?q=" + movies + "&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10";
         $.ajax({
             url: queryUrl,
             method: "GET",
