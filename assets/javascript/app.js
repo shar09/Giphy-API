@@ -1,6 +1,7 @@
 $(document).ready(function(){   
     var gifs = ["Scarface", "Friends", "Peaky Blinders", "Breaking Bad", "The Big Bang Theory", "James Bond", "Pirates of the Caribbean", "Pulp Fiction", "Mean Girls"];
-        
+    
+    //function to display gifs based on the url
     function displayGif() {
         var movies = $(this).attr("data-name");
         var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + movies + "&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10";
@@ -25,11 +26,11 @@ $(document).ready(function(){
                     gifImg.append(p);
                     gifImg.append(img);
                     $("#gif-view").append(gifImg);
-
                 }
             });
     }
-        
+    
+    //function to create buttons for search terms
     function renderButtons() {
         $("#button-view").empty();
 
@@ -41,7 +42,8 @@ $(document).ready(function(){
             $("#button-view").append(render).append(" ");
         }
     }
-
+    
+    //creates buttons for new searches
     $("#add-gif").on("click", function(event) {
         event.preventDefault();
         var movies = $("#gif-input").val().trim();
@@ -49,10 +51,14 @@ $(document).ready(function(){
         gifs.push(movies);
         renderButtons();
     });
-
+    
+    //displayGif function is called based on which gif is clicked
     $(document).on("click", ".movies", displayGif);
+    
+    //function call to create buttons for values in the array
     renderButtons();
 
+    //state of the gif is changed based on clicks
     $(document).on("click", ".gif", function(event) {
         event.displayGif; 
         var state = $(this).attr("data-state");
