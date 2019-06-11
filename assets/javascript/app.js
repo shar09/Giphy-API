@@ -1,10 +1,10 @@
-$(document).ready(function(){   
+$(document).ready(function() {   
     var gifs = ["Scarface", "Friends", "Peaky Blinders", "Breaking Bad", "The Big Bang Theory", "James Bond", "Pirates of the Caribbean", "Pulp Fiction", "Mean Girls"];
     
     //function to display gifs based on the url
     function displayGif() {
         var movies = $(this).attr("data-name");
-        var queryUrl = "httpS://api.giphy.com/v1/gifs/search?q=" + movies + "&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10";
+        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + movies + "&api_key=ZWI6e17j8ZXUhySGbmEXjzTm8stNWI7l&limit=10";
         $.ajax({
             url: queryUrl,
             method: "GET",
