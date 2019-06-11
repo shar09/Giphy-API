@@ -62,17 +62,9 @@ form {
 img {
     height: 250px;
     width: 400px;
-    float: left;
-    clear: both;
 }
 
-p {
+.single-gif {
     float: left;
-    clear: both;
-}
-
-.gif-img {
-    float: left;
-    clear: both;
-    margin: 0 auto;
+    margin-right: 30px;
 }

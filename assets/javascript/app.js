@@ -12,10 +12,11 @@ $(document).ready(function() {
                 console.log("success got data", response.data);
                 $("#gif-view").empty();
                 var gifImg = $("<div></div>").addClass("gif-img");
+                var seperate;
                 var img;
                 var rating;
                 var p;
-                for(var i=0; i<response.data.length; i++) {   
+                for(var i=0; i<response.data.length; i++) {  
                     rating = response.data[i].rating;
                     p = $("<p>").text("Rating:" +rating);
                     img = $("<img>").attr("src", response.data[i].images.downsized_still.url);
@@ -23,8 +24,10 @@ $(document).ready(function() {
                     img.attr("data-still", response.data[i].images.downsized_still.url);
                     img.attr("data-animate", response.data[i].images.downsized.url);
                     img.attr("data-state", "still");
-                    gifImg.append(p);
-                    gifImg.append(img);
+                    seperate = $("<div></div>").addClass("single-gif"); 
+                    seperate.append(p);
+                    seperate.append(img);
+                    gifImg.append(seperate);
                     $("#gif-view").append(gifImg);
                 }
             });
