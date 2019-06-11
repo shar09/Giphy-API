@@ -62,6 +62,8 @@ form {
 img {
     height: 250px;
     width: 400px;
+    border: solid 4px;
+    border-color: silver;
 }
 
 .single-gif {
